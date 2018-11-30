@@ -1,0 +1,25 @@
+version: '2'
+services:
+  nginx:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/test-express-2-nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: test-express-2
+        awslogs-region: ap-northeast-1
+        awslogs-stream-prefix: nginx
+
+  express:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/test-express-2:latest
+    container_name: express
+    ports:
+      - "3000:3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: test-express-2
+        awslogs-region: ap-northeast-1
+        awslogs-stream-prefix: express
