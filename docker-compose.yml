@@ -1,14 +1,14 @@
 version: '2'
 services:
   nginx:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/test-express-2-nginx:latest
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${NGINX_REPO}:latest
     container_name: nginx
     ports:
       - "80:80"
     mem_limit: 2g
-    logging:
-      driver: awslogs
-      options:
-        awslogs-group: /ecs/test-express-2
-        awslogs-region: ${AWS_REGION}
-        awslogs-stream-prefix: ecs
+  express:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${EXPRESS_REPO}:latest
+    container_name: express
+    ports:
+      - "3000:3000"
+    mem_limit: 2g

@@ -8,6 +8,8 @@ task_definition:
   services:
     nginx:
       essential: true
+    express:
+      essential: true
 run_params:
   network_configuration:
     awsvpc_configuration:
